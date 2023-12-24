@@ -1,22 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Buscar camelladores</title>
+    <title>Buscar Trabajadores</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            color: #fff;
+        }
+        .container {
+            max-width: 600px;
+            margin-top: 50px;
+        }
+        .card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: none;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        }
+        .card-title, .card-text {
+            color: #fff;
+        }
+        .btn-primary {
+            background-color: #203a43;
+            border: none;
+        }
+        form {
+            background: rgba(0,0,0,0.7);
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.5);
+        }
+        h1, h2 {
+            text-align: center;
+            padding: 15px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="mt-5">Buscar Trabajadores</h1>
+        <h1>Buscar Trabajadores</h1>
         <form method="GET" action="{% url 'search_results' %}">
+            <div class="form-group">
+                <input type="number" class="form-control" name="edad" placeholder="Edad">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="cargo" placeholder="Cargo">
+            </div>
             <div class="form-group">
                 <input type="text" class="form-control" name="salario" placeholder="Salario">
             </div>
-            <button type="submit" class="btn btn-primary mt-3">Buscar</button>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" name="activo" value="true">
+                <label class="form-check-label" for="activo">Activo</label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block mt-3">Buscar</button>
         </form>
         <hr>
         <h2>Resultados:</h2>
         {% for worker in workers %}
-        <div class="card mt-3">
+        <div class="card mb-4">
             <div class="card-body">
                 <h3 class="card-title">{{ worker.nombre }} {{ worker.apellido }}</h3>
                 <p class="card-text">Edad: {{ worker.edad }}</p>

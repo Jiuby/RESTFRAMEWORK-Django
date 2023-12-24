@@ -20,9 +20,10 @@ from django.views.generic import RedirectView
 from api import views
 
 urlpatterns = [
+    path('', RedirectView.as_view(url='/search_results/', permanent=True)),  # Redirige la ruta raíz a /search_results/
     path('admin/', admin.site.urls),
     path('api/v1/', include('api.urls')),
-    path('', RedirectView.as_view(url='/api/v1/', permanent=True)),
     path('search_results/', views.search_results, name='search_results'),
 ]
+
 
