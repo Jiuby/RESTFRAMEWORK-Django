@@ -17,10 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
+from api import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('api.urls')),
     path('', RedirectView.as_view(url='/api/v1/', permanent=True)),
+    path('search_results/', views.search_results, name='search_results'),
 ]
 
