@@ -10,8 +10,11 @@ class trabajadorViewSet(viewsets.ModelViewSet):
 def search_results(request):
     workers = trabajador.objects.none()
     if request.method == 'GET':
-        id = request.GET.get('id', '')
-        if id.isdigit():
-            workers = trabajador.objects.filter(id=id)
+        salario = request.GET.get('salario', '')
+        salario = salario.replace(',', '').replace('.', '')
+        if salario.isdigit():
+            salario = int(salario)
+            workers = trabajador.objects.all()
+            workers = [worker for worker in workers if int(worker.salario.replace(',', '').replace('.', '')) < salario]
 
     return render(request, 'index.html', {'workers': workers})
