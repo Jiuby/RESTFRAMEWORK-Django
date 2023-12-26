@@ -15,14 +15,8 @@ def search_results(request):
         salario = request.GET.get('salario', '').replace(',', '').replace('.', '')
         activo = request.GET.get('activo', '') == 'true'
 
-        if edad.isdigit():
-            workers = trabajador.objects.filter(edad__lte=int(edad))
-
         if cargo:
             workers = trabajador.objects.filter(cargo__icontains=cargo)
-
-        if salario.isdigit():
-            workers = [worker for worker in workers if int(worker.salario.replace(',', '').replace('.', '')) <= int(salario)]
 
         if activo:
             workers = trabajador.objects.filter(activo=activo)

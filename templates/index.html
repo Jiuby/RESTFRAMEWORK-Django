@@ -41,13 +41,7 @@
         <h1>Buscar Trabajadores</h1>
         <form method="GET" action="{% url 'search_results' %}">
             <div class="form-group">
-                <input type="number" class="form-control" name="edad" placeholder="Edad">
-            </div>
-            <div class="form-group">
                 <input type="text" class="form-control" name="cargo" placeholder="Cargo">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" name="salario" placeholder="Salario">
             </div>
             <div class="form-check">
                 <input type="checkbox" class="form-check-input" name="activo" value="true">
